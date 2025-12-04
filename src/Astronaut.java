@@ -44,7 +44,7 @@ public class Astronaut {
 
         }
         if (xpos<=0) {//the right wall
-            dx=dx-2*dx;
+            dx=-dx;
 
 
         }
@@ -54,7 +54,7 @@ public class Astronaut {
 
         }
         if (ypos<=0) {//the right wall
-            dy=dy-2*dy;
+            dy=-dy;
 
 
         }

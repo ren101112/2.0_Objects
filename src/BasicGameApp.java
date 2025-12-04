@@ -62,12 +62,15 @@ public class BasicGameApp implements Runnable {
 	public BasicGameApp() {
       
       setUpGraphics();
-       
+
+       //the int is casting and saying that you want a whole number, and the math.random says to pick a random number and the 10 is how many numbers there are ALWAYS STARTING AT 0
       //variable and objects
-      //create (construct) the objects needed for the game and load up 
+      //create (construct) the objects needed for the game and load up
+        int randx = (int)(Math.random()*999)+1;
+        int randy = (int)(Math.random()*699)+1;
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro = new Astronaut(500,350);
-        astro2 = new Astronaut(300,600);
+        astro2 = new Astronaut(randx,randy);
 
 	}// BasicGameApp()
 
