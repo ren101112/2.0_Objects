@@ -48,7 +48,7 @@ public class asteroid {
             ypos=699-height;
         }
        // if (xpos>=1000-width) {//the right wall
-            //dx=-dx;
+            //dx=-dx; new
 
 
         //}
