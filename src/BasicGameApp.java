@@ -47,6 +47,8 @@ public class BasicGameApp implements Runnable {
 	private Astronaut astro;
     private Astronaut astro2;
     private asteroid asteroid1;
+    private asteroid asteroid2;
+
 
 
 
@@ -76,6 +78,8 @@ public class BasicGameApp implements Runnable {
 		astro = new Astronaut(500,350);
         astro2 = new Astronaut(randx,randy);
         asteroid1 = new asteroid(100,200);
+        asteroid2= new asteroid(883,322);
+
 
 	}// BasicGameApp()
 
@@ -105,6 +109,7 @@ public class BasicGameApp implements Runnable {
 		astro.move();
         astro2.move();
         asteroid1.move();
+        asteroid2.move();
 
 	}
 	
@@ -158,6 +163,7 @@ public class BasicGameApp implements Runnable {
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
         g.drawImage(asteroidpic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(astroPic, astro2.xpos,astro2.ypos, astro2.width, astro2.height,null);
+        g.drawImage(asteroidpic,asteroid2.xpos,asteroid2.ypos,asteroid2.width,asteroid2.height,null);
         g.setColor(Color.green);
         //g.fillRect(100,300,200,200);
 
