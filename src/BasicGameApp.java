@@ -110,8 +110,25 @@ public class BasicGameApp implements Runnable {
         astro2.move();
         asteroid1.move();
         asteroid2.move();
+        crashing();
 
 	}
+
+    public void crashing(){
+        //check to see if astros are crashing into each other
+        if(astro.hitbox.intersects(astro2.hitbox)){
+            System.out.println("crash!!!!!!!!");
+            astro.dx=-astro.dx;
+            astro2.dx=-astro2.dx;
+            astro.dy=-astro.dy;
+            astro2.dy=-astro2.dy;
+
+
+        }
+
+
+
+    }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
@@ -164,7 +181,7 @@ public class BasicGameApp implements Runnable {
         g.drawImage(asteroidpic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(astroPic, astro2.xpos,astro2.ypos, astro2.width, astro2.height,null);
         g.drawImage(asteroidpic,asteroid2.xpos,asteroid2.ypos,asteroid2.width,asteroid2.height,null);
-        g.setColor(Color.green);
+        g.drawRect(astro.hitbox.x,astro.hitbox.y,astro.hitbox.width,astro.hitbox.height);
         //g.fillRect(100,300,200,200);
 
 		g.dispose();//do not draw anything after here__ END DRAWING
