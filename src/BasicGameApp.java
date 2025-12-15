@@ -109,10 +109,26 @@ public class BasicGameApp implements Runnable {
 		astro.move();
         astro2.move();
         asteroid1.move();
+        asteroid2.dx=-5;
+        asteroid2.dy=-10;
+        stroidCrashing();
         asteroid2.move();
         crashing();
 
+
 	}
+    public void stroidCrashing(){
+        if(asteroid1.hitbox2.intersects(asteroid2.hitbox2)){
+            System.out.println("NASA: asteroid collision");
+            asteroid2.dx=-asteroid2.dx;
+            asteroid1.dx=-asteroid1.dx;
+            asteroid2.dy=-asteroid2.dy;
+            asteroid1.dy=-asteroid1.dy;
+
+        }
+
+
+    }
 
     public void crashing(){
         //check to see if astros are crashing into each other
