@@ -40,6 +40,8 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
     public Image asteroidpic;
+    public Image background;
+
 
 
    //Declare the objects used in the program
@@ -74,10 +76,16 @@ public class BasicGameApp implements Runnable {
         int randx = (int)(Math.random()*999)+1;
         int randy = (int)(Math.random()*699)+1;
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
+        background=Toolkit.getDefaultToolkit().getImage("stars.jpg");
         asteroidpic = Toolkit.getDefaultToolkit().getImage("asteroidimg.jpg");//load the picture
 		astro = new Astronaut(500,350);
         astro2 = new Astronaut(randx,randy);
+
         asteroid1 = new asteroid(100,200);
+        asteroid1.dx=10;
+        asteroid1.dy=3;
+
+
         asteroid2= new asteroid(883,322);
 
 
@@ -109,38 +117,49 @@ public class BasicGameApp implements Runnable {
 		astro.move();
         astro2.move();
         asteroid1.move();
-        asteroid2.dx=-5;
-        asteroid2.dy=-10;
-        stroidCrashing();
+
+
         asteroid2.move();
         crashing();
 
 
 	}
-    public void stroidCrashing(){
-        if(asteroid1.hitbox2.intersects(asteroid2.hitbox2)){
-            System.out.println("NASA: asteroid collision");
-            asteroid2.dx=-asteroid2.dx;
-            asteroid1.dx=-asteroid1.dx;
-            asteroid2.dy=-asteroid2.dy;
-            asteroid1.dy=-asteroid1.dy;
 
-        }
-
-
-    }
 
     public void crashing(){
         //check to see if astros are crashing into each other
-        if(astro.hitbox.intersects(astro2.hitbox)){
+        if(astro.hitbox.intersects(astro2.hitbox)&& astro2.isAlive==true){
             System.out.println("crash!!!!!!!!");
             astro.dx=-astro.dx;
             astro2.dx=-astro2.dx;
             astro.dy=-astro.dy;
             astro2.dy=-astro2.dy;
+            astro2.isAlive=false;
 
 
         }
+        if(asteroid1.hitbox2.intersects(asteroid2.hitbox2)&&asteroid1.isCrashing==false){
+            System.out.println("asteroid collision");
+            asteroid2.dx=-asteroid2.dx;
+            asteroid1.dx=-asteroid1.dx;
+            asteroid2.dy=-asteroid2.dy;
+            asteroid1.dy=-asteroid1.dy;
+            asteroid2.height+=50;
+            asteroid1.isCrashing=true;
+
+
+
+        }
+        if(!asteroid1.hitbox2.intersects(asteroid2.hitbox2)){
+            System.out.println("no intersection");
+            asteroid1.isCrashing=false;
+        }
+
+
+
+
+
+
 
 
 
@@ -164,7 +183,7 @@ public class BasicGameApp implements Runnable {
       panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
       panel.setLayout(null);   //set the layout
    
-      // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
+      // creates a canvas, which is a blank rectangular area of the screen onto which the application can draw
       // and trap input events (Mouse and Keyboard events)
       canvas = new Canvas();  
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
@@ -191,11 +210,14 @@ public class BasicGameApp implements Runnable {
 	private void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);//we dont want to draw an image before we make our background first
+        g.drawImage(background, 0,0, 1000, 700,null);
 
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
         g.drawImage(asteroidpic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
-        g.drawImage(astroPic, astro2.xpos,astro2.ypos, astro2.width, astro2.height,null);
+       if(astro2.isAlive == true){
+            g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+        }
         g.drawImage(asteroidpic,asteroid2.xpos,asteroid2.ypos,asteroid2.width,asteroid2.height,null);
         g.drawRect(astro.hitbox.x,astro.hitbox.y,astro.hitbox.width,astro.hitbox.height);
         //g.fillRect(100,300,200,200);

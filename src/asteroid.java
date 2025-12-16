@@ -11,6 +11,7 @@ public class asteroid {
     public int height;
     public boolean isAlive;
     public Rectangle hitbox2;
+    public boolean isCrashing;
     //a boolean to denote if the hero is alive or dead.
 
 
@@ -31,6 +32,8 @@ public class asteroid {
         height = 60;
         isAlive = false;
         hitbox2=new Rectangle(xpos,ypos,width,height);
+        isCrashing=false;
+
 
     } // constructor
 
@@ -38,19 +41,19 @@ public class asteroid {
     public void move() {
 
 
-        if (xpos>=1000-width){
+        if (xpos>=950){
             xpos=2;
 
         }
         if (xpos<=0){
-            xpos=999-width;
+            xpos=950;
         }
-        if (ypos>=700-height){
+        if (ypos>=650){
             ypos=1;
 
         }
         if (ypos<=0){
-            ypos=699-height;
+            ypos=650;
         }
        // if (xpos>=1000-width) {//the right wall
             //dx=-dx; new
