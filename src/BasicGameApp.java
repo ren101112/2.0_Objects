@@ -138,7 +138,7 @@ public class BasicGameApp implements Runnable {
 
 
         }
-        if(asteroid1.hitbox2.intersects(asteroid2.hitbox2)&&asteroid1.isCrashing==false){
+        if(asteroid1.hitbox2.intersects(asteroid2.hitbox2)&&asteroid1.isCrashing==false&& asteroid1.isAlive==true){
             System.out.println("asteroid collision");
             asteroid2.dx=-asteroid2.dx;
             asteroid1.dx=-asteroid1.dx;
@@ -146,6 +146,7 @@ public class BasicGameApp implements Runnable {
             asteroid1.dy=-asteroid1.dy;
             asteroid2.height+=50;
             asteroid1.isCrashing=true;
+            asteroid1.isAlive=false;
 
 
 
@@ -214,7 +215,9 @@ public class BasicGameApp implements Runnable {
 
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
-        g.drawImage(asteroidpic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
+        if(asteroid1.isAlive==true) {
+            g.drawImage(asteroidpic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
+        }
        if(astro2.isAlive == true){
             g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
         }
