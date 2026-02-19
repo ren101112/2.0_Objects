@@ -1,5 +1,7 @@
 import java.awt.*;
 
+
+
 public class asteroid {
     //Here's where you state which variables you are going to use.
     public String name;                //holds the name of the hero
@@ -33,6 +35,7 @@ public class asteroid {
         isAlive = false;
         hitbox2=new Rectangle(xpos,ypos,width,height);
         isCrashing=false;
+        isAlive=true;
 
 
     } // constructor

@@ -13,16 +13,20 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
+/// step 1: implement key listner
+/// step 2: todo: go into setupGraphics and add the key lister thing
+/// step 3: add the methods
 //*******************************************************************************
 // Class Definition Section
 
-public class BasicGameApp implements Runnable {
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -152,17 +156,9 @@ public class BasicGameApp implements Runnable {
 
         }
         if(!asteroid1.hitbox2.intersects(asteroid2.hitbox2)){
-            System.out.println("no intersection");
+
             asteroid1.isCrashing=false;
         }
-
-
-
-
-
-
-
-
 
     }
 	
@@ -186,7 +182,8 @@ public class BasicGameApp implements Runnable {
    
       // creates a canvas, which is a blank rectangular area of the screen onto which the application can draw
       // and trap input events (Mouse and Keyboard events)
-      canvas = new Canvas();  
+      canvas = new Canvas();
+      canvas.addKeyListener(this);//step 2
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
    
@@ -229,4 +226,40 @@ public class BasicGameApp implements Runnable {
 
 		bufferStrategy.show();
 	}
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("key typed"+e.getKeyCode());
+        if(e.getKeyCode()==38){
+            System.out.println("up");
+            astro.dy=-Math.abs(astro.dy);
+
+        }
+        if(e.getKeyCode()==40){
+            System.out.println("down");
+            astro.dy=Math.abs(astro.dy);
+
+        }
+        if(e.getKeyCode()==37){
+            System.out.println("left");
+            astro.dx=-Math.abs(astro.dx);
+
+        }
+        if(e.getKeyCode()==39){
+            System.out.println("right");
+            astro.dx=Math.abs(astro.dx);
+
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
