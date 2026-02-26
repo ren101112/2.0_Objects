@@ -15,6 +15,8 @@
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -26,7 +28,7 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 
-public class BasicGameApp implements Runnable, KeyListener {
+public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -184,6 +186,7 @@ public class BasicGameApp implements Runnable, KeyListener {
       // and trap input events (Mouse and Keyboard events)
       canvas = new Canvas();
       canvas.addKeyListener(this);//step 2
+       canvas.addMouseListener(this);
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
    
@@ -237,22 +240,22 @@ public class BasicGameApp implements Runnable, KeyListener {
         System.out.println("key typed"+e.getKeyCode());
         if(e.getKeyCode()==38){
             System.out.println("up");
-            astro.dy=-Math.abs(astro.dy);
+            astro.dy=-3;
 
         }
         if(e.getKeyCode()==40){
             System.out.println("down");
-            astro.dy=Math.abs(astro.dy);
+            astro.dy=3;
 
         }
         if(e.getKeyCode()==37){
             System.out.println("left");
-            astro.dx=-Math.abs(astro.dx);
+            astro.dx=-3;
 
         }
         if(e.getKeyCode()==39){
             System.out.println("right");
-            astro.dx=Math.abs(astro.dx);
+            astro.dx=3;
 
         }
 
@@ -260,6 +263,62 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode()==38){
+            System.out.println("not pressed the up arrow");
+            astro.dy=0;
+
+        }
+        if(e.getKeyCode()==40){
+            System.out.println("down");
+            astro.dy=0;
+
+        }
+        if(e.getKeyCode()==37){
+            System.out.println("left");
+            astro.dx=0;
+
+        }
+        if(e.getKeyCode()==39){
+            System.out.println("right");
+            astro.dx=0;
+
+        }
+
+
+    }
+
+    @Override//step 3
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println(e.getPoint());
+        asteroid2.xpos=e.getX();
+        asteroid2.ypos=e.getY();
+        System.out.println(e.getClickCount());
+        if (e.getClickCount()==2){
+            asteroid1.width=asteroid1.width*2;
+            asteroid1.height=asteroid1.height*2;
+
+        }
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("entered!!!!!!!!");
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }
