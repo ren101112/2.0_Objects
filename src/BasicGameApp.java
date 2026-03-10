@@ -56,6 +56,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     private Astronaut astro2;
     private asteroid asteroid1;
     private asteroid asteroid2;
+    public asteroid[] roids;
 
 
 
@@ -73,6 +74,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
    // This section is the setup portion of the program
    // Initialize your variables and construct your program objects here.
 	public BasicGameApp() {
+
       
       setUpGraphics();
 
@@ -93,6 +95,8 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
 
         asteroid2= new asteroid(883,322);
+        roids=new asteroid[5];
+        asteroidArray();
 
 
 	}// BasicGameApp()
@@ -105,6 +109,15 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
    // main thread
    // this is the code that plays the game after you set things up
+    public void asteroidArray(){
+        for (int x=0;x<roids.length;x++){
+            roids[x] = new asteroid((int)(Math.random()*1000),(int)(Math.random()*800));
+
+
+        }
+
+
+    }
 	public void run() {
 
       //for the moment we will loop things forever.
@@ -223,6 +236,10 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         }
         g.drawImage(asteroidpic,asteroid2.xpos,asteroid2.ypos,asteroid2.width,asteroid2.height,null);
         g.drawRect(astro.hitbox.x,astro.hitbox.y,astro.hitbox.width,astro.hitbox.height);
+        for(int z=0;z<roids.length;z++){
+            g.drawImage(asteroidpic,roids[z].xpos,roids[z].ypos,roids[z].width,roids[z].height,null);
+
+        }
         //g.fillRect(100,300,200,200);
 
 		g.dispose();//do not draw anything after here__ END DRAWING

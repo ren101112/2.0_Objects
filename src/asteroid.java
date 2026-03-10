@@ -2,6 +2,7 @@ import java.awt.*;
 
 
 
+
 public class asteroid {
     //Here's where you state which variables you are going to use.
     public String name;                //holds the name of the hero
