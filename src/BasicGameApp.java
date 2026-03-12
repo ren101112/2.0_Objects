@@ -112,9 +112,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     public void asteroidArray(){
         for (int x=0;x<roids.length;x++){
             roids[x] = new asteroid((int)(Math.random()*1000),(int)(Math.random()*800));
+            roids[x].dx=(int)(Math.random()*5)+2;
+            roids[x].dy=(int)(Math.random()*7)-3;
 
 
         }
+        System.out.println(roids[3].dy);
 
 
     }
@@ -140,6 +143,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
         asteroid2.move();
         crashing();
+        for(int i = 0; i < roids.length; i++){
+            roids[i].move();
+        }
 
 
 	}
