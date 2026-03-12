@@ -180,6 +180,14 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
             asteroid1.isCrashing=false;
         }
+        for (int x=0; x<roids.length;x++){
+
+            if(roids[x].hitbox2.intersects(asteroid2.hitbox2)&&roids[x].isAlive==true){
+                roids[x].isAlive=false;
+                System.out.println("ASTEROID ARRAY CRASHING");
+
+            }
+        }
 
     }
 	
